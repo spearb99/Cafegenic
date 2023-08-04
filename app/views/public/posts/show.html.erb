@@ -1,0 +1,17 @@
+ <table class="table table-borderless">
+  <tr>
+    <td><%= @post.shop_name %></td>
+  </tr>
+  <tr>
+    <td><%= @post.text %></td>
+  </tr>
+  <tr>
+    <td><%= @post.address %></td>
+  </tr>
+  <tr>
+   <td></td>
+  <td>
+    <%= link_to "編集する", users_information_edit_path, class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
+  </td>
+  </tr>
+</table>
