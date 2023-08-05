@@ -12,7 +12,27 @@
         <tr>
           <td><%= @user.name %></td>
         </tr>
-
+        
+      <tr>Follows</tr>
+      <td>
+        <%= link_to follows_user_path(@user) do %>
+        <h6><%= @user.followers.count %></h6>
+        <% end %> 
+      </td>
+      </tr>
+      <tr>Followers</tr>
+        <td>  
+          <%= link_to followers_user_path(@user) do %>
+          <h6><%= @user.followeds.count %></h6>
+          <% end %>
+        </td>
+      </tr> 
+      <tr>
+      <td>
+    <div class="mypage-follow-contents-<%= @user.id %>">
+      <%= render "public/relationships/relationship", user: @user %>
+    </div>
+      </td>
         <tr>
           <td><%= @user.introduction %></td>
         </tr>
@@ -23,11 +43,12 @@
         <tr>
           <td></td>
           <td>
-            <%= link_to "編集する", users_information_edit_path, class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
-            <%= link_to "ログアウト", users_information_edit_path, method: :delete, class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
+            <%= link_to "編集する", edit_user_path(@user), class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
           </td>
         </tr>
         </table>
+        </div>
       </div>
     </div>
   </div>

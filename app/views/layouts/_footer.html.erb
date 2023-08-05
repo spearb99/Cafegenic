@@ -13,33 +13,33 @@
             <% end %>
           </li>
           <li>
-    		    <%= link_to users_mypage_path,class: 'nav-link text-light' do %>
+    		    <%= link_to users_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-search-plus"></i>
             <% end %>
           </li>
           <li>
-    		    <%= link_to users_mypage_path,class: 'nav-link text-light' do %>
+    		    <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-plus-circle"></i>
             <% end %>
           </li>
           <li>
-    		    <%= link_to users_mypage_path,class: 'nav-link text-light' do %>
+    		    <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
               <i class="far fa-heart"></i>
             <% end %>
           </li>
           <li>
-    		    <%= link_to users_mypage_path,class: 'nav-link text-light' do %>
+    		    <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
              <i class="far fa-user-circle"></i>
             <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to root_path,class: 'nav-link text-light' do %>
+            <%= link_to root_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i>
             <% end %>
           </li>
           <li>
-            <%= link_to about_path,class: 'nav-link text-light' do %>
+            <%= link_to users_about_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-link"></i>
             <% end %>
           </li>
