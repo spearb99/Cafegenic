@@ -2,10 +2,13 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = current_user
+    @user = User.find(params[:id])
+    @following_users = @user.following_users
+    @follower_users = @user.follower_users
   end
   
   def edit
-    @user = current_user
+    @user = @user = User.find(params[:id])
   end
   
   def update
@@ -27,6 +30,23 @@ class Public::UsersController < ApplicationController
     reset_session
     flash[:notice] = "退会しました。"
     redirect_to new_user_registration_path
+  end
+  
+  def follows
+    user = User.find(params[:id])
+    @users = user.following_users
+  end
+
+# フォロワー一覧
+  def followers
+   user = User.find(params[:id])
+   @users = user.follower_users
+  end
+  
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to books_path, notice: 'ゲストユーザーとしてログインしました。'
   end
   
   def user_params
