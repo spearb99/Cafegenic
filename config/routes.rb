@@ -24,11 +24,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   patch "users/information" => "users#update"
   get "users/unsubscribe" => "users#unsubscribe"
   patch "users/withdraw" => "users#withdraw"
-  resources :posts, only: [:new, :index, :show, :create, :update, :destroy]
+  resources :posts, only: [:new, :index, :show, :create, :update, :destroy, :edit]
 end
   namespace :admin do
   get "/" => "homes#top"
   get "search" => "searches#search"
 end
+
 end
 
