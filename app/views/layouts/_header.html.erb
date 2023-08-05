@@ -1,19 +1,21 @@
 <header>
-    <div class="container">
-    <p class="text-center">Cafegenic</p>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div class="row">
+    <p class="col-9 text-center", style="padding-left: 350px;">Cafegenic</p>
+    <div class="col-3 d-flex">
+     <% if user_signed_in? %>
+      <% else %>
+      <p>
+        <%= link_to new_user_registration_path,class: 'nav-link text-dark' do %>
+        <i class="fas fa-user-plus"></i> Sign up
+        <% end %>
+      </p>
+      <p>
+       <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+      </p>
+      <p>
+        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
+      </p>
+    <% end %>
+  </div>
+  </div>
 </header>
