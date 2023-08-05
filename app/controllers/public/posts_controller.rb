@@ -12,8 +12,14 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+      @posts = Post.all
   end
+
+  def indexfav
+     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+     @posts = Post.where(id: favorites)
+  end
+
 
   def show
     @post = Post.find(params[:id])
@@ -26,9 +32,9 @@ class Public::PostsController < ApplicationController
   def update
      @post = Post.find(params[:id])
     if @post.update(post_params)
-        redirect_to post_path(@post)
+       redirect_to post_path(@post)
     else
-        redirect_to post_path(@post)
+       redirect_to post_path(@post)
     end
   end
 
@@ -42,5 +48,5 @@ class Public::PostsController < ApplicationController
 
  def post_params
     params.require(:post).permit(:post_image, :text, :shop_name, :address, :longitude, :latitude )
-  end
+ end
 end

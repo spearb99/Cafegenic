@@ -19,9 +19,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   root to: "homes#top"
   get "users/about"=>"homes#about"
   patch "users/withdraw" => "users#withdraw"
-    
-  resources :posts, only: [:new, :index, :show, :create, :update, :destroy, :edit]
-    
+
+  resources :posts do
+    collection do
+      get 'indexfav'
+    end
+    resource :favorite, only: [:create, :destroy]
+  end
   resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :follows, :followers
@@ -36,7 +40,5 @@ end
   get "/" => "homes#top"
   get "search" => "searches#search"
   resources :users, only: [:index, :show, :edit, :update, :destroy]
+  end
 end
-
-end
-
