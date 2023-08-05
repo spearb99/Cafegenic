@@ -8,7 +8,7 @@
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
       	  <li>
-    		    <%= link_to public_homes_top_path,class: 'nav-link text-light' do %>
+    		    <%= link_to posts_path,class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i>
             <% end %>
           </li>
@@ -18,7 +18,10 @@
             <% end %>
           </li>
           <li>
-    		    <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
+
+    		    <%= link_to new_post_path,class: 'nav-link text-light' do %>
+
+    		    <%= link_to user_path(current_user),class: 'nav-link text-light' do %
               <i class="fas fa-plus-circle"></i>
             <% end %>
           </li>
@@ -39,6 +42,8 @@
             <% end %>
           </li>
           <li>
+
+            <%= link_to users_about_path,class: 'nav-link text-light' do %
             <%= link_to users_about_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-link"></i>
           <% end %>
