@@ -1,4 +1,8 @@
  <table class="table table-borderless">
+   
+  <tr>
+    <td><%= image_tag @post.post_image, size: "300x200" %></td>
+  </tr>
   <tr>
     <td><%= @post.shop_name %></td>
   </tr>
@@ -9,9 +13,26 @@
     <td><%= @post.address %></td>
   </tr>
   <tr>
-   <td></td>
+   <td>
+  <div id='map'></div>
+  <style>
+    #map{
+    height: 400px;
+    }
+  </style>
+
+  <script>
+    function initMap(){
+    let map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script></td>
+   </tr>
   <td>
-    <%= link_to "編集する", users_information_edit_path, class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
+    <%= link_to "編集する", edit_post_path(@post), class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
   </td>
   </tr>
 </table>
