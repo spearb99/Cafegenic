@@ -13,7 +13,9 @@
     <td><%= @post.address %></td>
   </tr>
   <tr>
-   <td>
+    <td id="favorite_buttons_<%= @post.id %>" >
+    <%= render "public/favorites/favorite", post: @post %></td>
+  </tr>
   <div id='map'></div>
   <style>
     #map{
