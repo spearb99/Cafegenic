@@ -32,6 +32,7 @@ end
   namespace :admin do
   get "/" => "homes#top"
   get "search" => "searches#search"
+  resources :users, only: [:index, :show, :edit, :update, :destroy]
 end
 end
 

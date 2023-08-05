@@ -1,21 +1,21 @@
 <header>
+  <div class="container">
   <div class="row">
     <p class="col-9 text-center", style="padding-left: 350px;">Cafegenic</p>
     <div class="col-3 d-flex">
-     <% if user_signed_in? %>
-      <% else %>
-      <p>
-        <%= link_to new_user_registration_path,class: 'nav-link text-dark' do %>
-        <i class="fas fa-user-plus"></i> Sign up
-        <% end %>
-      </p>
-      <p>
-       <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-      </p>
-      <p>
-        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
-      </p>
-    <% end %>
-  </div>
+      <% if admin_signed_in? %>
+        <li>
+          <h5>管理者ログイン中</h5>
+        </li>
+        <li>
+          <%= link_to '会員一覧', admin_users_path, class: "btn mx-3", style: "background-color: #FF9494; color: white;" %>
+        </li>
+
+        <li>
+          <%= link_to '管理者ログアウト', destroy_admin_session_path, method: :delete, class: "btn mx-3", style: "background-color: #FF9494; color: white;" %>
+        </li>
+      <% end %>
+    </div>
+    </div>
   </div>
 </header>

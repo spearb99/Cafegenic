@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="my-5"><%= @user.name %>さんの会員情報編集</h4>
+      <table class="table table-borderless">
+        <%= form_with model: [:admin, @user] do |f| %>
+        <tr>
+          <td>会員ID</td>
+          <td><%= @user.id %></td>
+        </tr>
+
+        <tr>
+          <td>Name</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.text_field :email %></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>会員ステータス</td>
+          <td>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効", { value: :false }  %>
+
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会", { value: :true } %>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td><%= f.submit "変更を保存", class:"btn", style: "background-color: #64CCC5; color: white;" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
