@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
  belongs_to :user
  has_one_attached :post_image
+ has_many :favorites, dependent: :destroy
+ has_many :post_users, through: :favorite, source: :user
  has_many :post_cafe_tags, dependent: :destroy
  has_many :cafe_tags, through: :post_cafe_tags
  
@@ -22,5 +24,9 @@ class Post < ApplicationRecord
    cafe_tag = CafeTag.find_or_create_by(name:new_name)
    self.cafe_tags << cfet_tag
    end
+ end
+ 
+ def favorited_by?(user)
+     favorites.exists?(user_id: user.id)
  end
 end

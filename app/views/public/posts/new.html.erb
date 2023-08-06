@@ -1,6 +1,6 @@
 <div class="form-group row">
-    <div class="col-lg-6">
-      <%= form_with model: @post do |f| %>
+  <div class="col-lg-6">
+    <%= form_with model: @post do |f| %>
       
     <div class="form-group">
       <%= f.label :"ショップ写真（必須）" %>
@@ -30,6 +30,11 @@
      <% else %>
      <%= f.submit '更新する', class: "btn btn-success mt-4" %>
      <% end %>
+
+    <div class="action-1">
+      <%= f.submit "登録する", class: "btn btn-primary w-100" %>
+    </div>
+
     <% end %>
   </div>
 </div>

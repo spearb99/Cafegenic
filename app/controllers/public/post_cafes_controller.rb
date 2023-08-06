@@ -1,10 +1,10 @@
 class Public::PostCafesController < ApplicationController
-  
+
   def index
     @post = Post.all
     @tag_list = CafeTag.all
   end
-  
+
   def create
    @post = Post.new(post_params)
    @pos.user_id = current_user.id
@@ -17,7 +17,7 @@ class Public::PostCafesController < ApplicationController
        render :new
     end
   end
-  
+
   def search_tag
     #検索結果画面でもタグ一覧表示
     @tag_list = CafeTag.all
