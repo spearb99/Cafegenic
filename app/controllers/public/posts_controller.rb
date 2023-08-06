@@ -17,18 +17,23 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @tag_list = @post.cafe_tags.pluck(:name).join(',')
+    @post_cafe_tags = @post.cafe_tags
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post_cafe.cafe_tags.pluck(:name).join(',')
   end
 
   def update
      @post = Post.find(params[:id])
+     tag_list=params[:post_cafe][:name].split(',')
     if @post.update(post_params)
-        redirect_to post_path(@post)
+      @post_cafe.save_cafe_tags(tag_list)
+       redirect_to post_path(@post)
     else
-        redirect_to post_path(@post)
+       redirect_to post_path(@post)
     end
   end
 
@@ -42,5 +47,5 @@ class Public::PostsController < ApplicationController
 
  def post_params
     params.require(:post).permit(:post_image, :text, :shop_name, :address, :longitude, :latitude )
-  end
+ end
 end

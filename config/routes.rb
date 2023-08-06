@@ -19,9 +19,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   root to: "homes#top"
   get "users/about"=>"homes#about"
   patch "users/withdraw" => "users#withdraw"
-    
+  get "search_tag" => "post_cafes#search_tag"
   resources :posts, only: [:new, :index, :show, :create, :update, :destroy, :edit]
-    
   resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :follows, :followers

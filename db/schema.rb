@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2023_08_04_071900) do
-
-ActiveRecord::Schema.define(version: 2023_08_04_103555) do
-
+ActiveRecord::Schema.define(version: 2023_08_06_003434) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +52,30 @@ ActiveRecord::Schema.define(version: 2023_08_04_103555) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "cafe_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_cafe_tags_on_name", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "post_id"
+  end
+
+  create_table "post_cafe_tags", force: :cascade do |t|
+    t.integer "post_cafe_id", null: false
+    t.integer "cafet_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"post_cafe_id\", \"cafe_tag_id\"", name: "index_post_cafe_tags_on_post_cafe_id_and_cafe_tag_id", unique: true
+    t.index ["cafet_tag_id"], name: "index_post_cafe_tags_on_cafet_tag_id"
+    t.index ["post_cafe_id"], name: "index_post_cafe_tags_on_post_cafe_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "shop_name", null: false
@@ -93,4 +113,6 @@ ActiveRecord::Schema.define(version: 2023_08_04_103555) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_cafe_tags", "cafet_tags"
+  add_foreign_key "post_cafe_tags", "post_caves"
 end

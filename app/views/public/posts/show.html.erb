@@ -12,6 +12,13 @@
   <tr>
     <td><%= @post.address %></td>
   </tr>
+  <tr>  <!--タグリスト-->
+  <td><% @tag_list.each do |list|%>
+    <i class="fa-sharp fa-solid fa-tag"></i>
+    <%=link_to list.name,search_tag_path(cafe_tag_id: list.id) %>
+    <%="(#{list.post_cafe.count})" %></td>
+    <% end %>
+  </tr>
   <tr>
    <td>
   <div id='map'></div>
