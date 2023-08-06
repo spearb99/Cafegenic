@@ -1,5 +1,5 @@
  <table class="table table-borderless">
-   
+
   <tr>
     <td><%= image_tag @post.post_image, size: "300x200" %></td>
   </tr>
@@ -12,12 +12,13 @@
   <tr>
     <td><%= @post.address %></td>
   </tr>
-  <tr>  <!--タグリスト-->
-  <td><% @tag_list.each do |list|%>
-    <i class="fa-sharp fa-solid fa-tag"></i>
-    <%=link_to list.name,search_tag_path(cafe_tag_id: list.id) %>
-    <%="(#{list.post_cafe.count})" %></td>
-    <% end %>
+  <tr>
+  <td>  
+   <!-- タグリスト -->
+      <% @post_cafe_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= tag.name %>
+      <% end %>
   </tr>
   <tr>
     <td id="favorite_buttons_<%= @post.id %>" >
