@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
       if @user.update(user_params)
         flash[:notice] = "登録情報を変更しました"
-        redirect_to users_mypage_path
+        redirect_to users_path
       else
         render :edit
       end
@@ -46,7 +46,7 @@ class Public::UsersController < ApplicationController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to books_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to post_path, notice: 'ゲストユーザーとしてログインしました。'
   end
   
   def favorites
@@ -59,5 +59,6 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name,:email,:introduction,:profile_image )
   end
+end
   
 

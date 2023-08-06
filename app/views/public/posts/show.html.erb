@@ -1,5 +1,5 @@
  <table class="table table-borderless">
-   
+
   <tr>
     <td><%= image_tag @post.post_image, size: "300x200" %></td>
   </tr>
@@ -11,6 +11,14 @@
   </tr>
   <tr>
     <td><%= @post.address %></td>
+  </tr>
+  <tr>
+  <td>  
+   <!-- タグリスト -->
+      <% @post_cafe_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= tag.name %>
+      <% end %>
   </tr>
   <tr>
     <td id="favorite_buttons_<%= @post.id %>" >
