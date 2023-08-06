@@ -12,75 +12,23 @@
         
         <tr>
           <td>ショップ名</td>
-          <td><%= f.text_field :name %></td>
+          <td><%= f.text_field :name, class: 'form-control'%></td>
         </tr>
         
         <tr>
           <td></td>
-          <td><%= f.text_area :text %></td>
+          <td><%= f.text_area :text, class: 'form-control' %></td>
         </tr>
         
-          <tr>
+        <tr>
           <td>住所</td>
-          <td><%= f.text_area :address %></td>
+          <td><%= f.text_field :address, class: 'form-control' %></td>
         </tr>
       
-        <tr>
-          <!-- 地名入力用のinputを追加 -->
-          <input id="address" type="textbox" value="Sydney, NSW">
-
-          <!-- buttonをクリックしたらcodeAddressを実行　-->
-          <input type="button" value="Encode" onclick="codeAddress()">
-          <div id='map'>
-          </div>
-
-          <style>
-            #map{
-            height: 400px;
-            }
-          </style>
-
-          <script>
-           /*
-            mapを関数の外で定義(codeAddressでも使うため)
-            geocoderを用意
-            */
-
-          let map
-          let geocoder
-
-          function initMap(){
-          // geocoderを初期化
-          geocoder = new google.maps.Geocoder()
-
-          map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-          });
-          }
-
-        function codeAddress(){
-        // 入力を取得
-        let inputAddress = document.getElementById('address').value;
-
-        // geocodingしたあとmapを移動
-        geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-         if (status == 'OK') {
-　  　　// map.setCenterで地図が移動
-        map.setCenter(results[0].geometry.location);
-
-　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-        var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-        });
-       } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-      }
-      });
-      }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+       <tr>
+         <td>タグ(,で区切ると複数タグ登録できます)</td>
+         <td><%= f.text_field :name,value: @tag_list, class: 'form-control' %></td>
+       </tr>
        <td><%= f.submit '変更を保存', class: "btn", style: "background-color: #64CCC5; color: white; mx-3" %></td>
       <td><%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
       <% end %>
