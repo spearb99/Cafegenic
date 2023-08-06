@@ -12,10 +12,15 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+      @posts = Post.all
   end
 
-  def show
+  def indexfav
+     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+     @posts = Post.where(id: favorites)
+  end
+
+ def show
     @post = Post.find(params[:id])
     @tag_list = @post.cafe_tags.pluck(:name).join(',')
     @post_cafe_tags = @post.cafe_tags
@@ -30,7 +35,7 @@ class Public::PostsController < ApplicationController
      @post = Post.find(params[:id])
      tag_list=params[:post_cafe][:name].split(',')
     if @post.update(post_params)
-      @post_cafe.save_cafe_tags(tag_list)
+       @post_cafe.save_cafe_tags(tag_list)
        redirect_to post_path(@post)
     else
        redirect_to post_path(@post)

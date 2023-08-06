@@ -49,8 +49,16 @@ class Public::UsersController < ApplicationController
     redirect_to post_path, notice: 'ゲストユーザーとしてログインしました。'
   end
   
+  def favorites
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+  
+  private
+  
   def user_params
     params.require(:user).permit(:name,:email,:introduction,:profile_image )
   end
-
 end
+  
+
