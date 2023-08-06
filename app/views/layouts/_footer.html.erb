@@ -18,11 +18,8 @@
             <% end %>
           </li>
           <li>
-
-    		    <%= link_to new_post_path,class: 'nav-link text-light' do %>
-
-    		    <%= link_to user_path(current_user),class: 'nav-link text-light' do %
-              <i class="fas fa-plus-circle"></i>
+            <%= link_to new_post_path,class: 'nav-link text-light' do %>
+            <i class="fas fa-plus-circle"></i>
             <% end %>
           </li>
           <li>
@@ -42,11 +39,9 @@
             <% end %>
           </li>
           <li>
-
-            <%= link_to users_about_path,class: 'nav-link text-light' do %
-            <%= link_to users_about_path(current_user),class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i>
-          <% end %>
+            <%= link_to users_about_path,class: 'nav-link text-light' do %>
+            <i class="fas fa-link"></i>
+            <% end %>
           </li>
         <% end %>
         </ul>

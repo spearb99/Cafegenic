@@ -4,29 +4,29 @@
       <h4 class="my-5">マイページ</h4>
       <div class="d-flex align-items-center">
       <table class="table table-borderless">
-        
+
         <tr>
           <td><%= image_tag @user.get_profile_image, size: '100x100' %></td>
         </tr>
-        
+
         <tr>
           <td><%= @user.name %></td>
         </tr>
-        
+
       <tr>Follows</tr>
       <td>
         <%= link_to follows_user_path(@user) do %>
         <h6><%= @user.followers.count %></h6>
-        <% end %> 
+        <% end %>
       </td>
       </tr>
       <tr>Followers</tr>
-        <td>  
+        <td>
           <%= link_to followers_user_path(@user) do %>
           <h6><%= @user.followeds.count %></h6>
           <% end %>
         </td>
-      </tr> 
+      </tr>
       <tr>
       <td>
     <div class="mypage-follow-contents-<%= @user.id %>">
