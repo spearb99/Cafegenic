@@ -1,0 +1,31 @@
+ <!--タグリスト-->
+  <% @tag_list.each do |list|%>
+    <i class="fa-sharp fa-solid fa-tag"></i>
+    <%=link_to list.name,search_tag_path(cafe_tag_id: list.id) %>
+    <%="(#{list.post_cafe.count})" %>
+  <% end %>
+  <div class="cover-index">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="item_index">
+      <h2 class="font-weight-normal mt-3">投稿一覧</h2>
+      </div>
+      <div class="row justify-content-center">
+      <% @posts.each do |post| %>
+      <div class="one-post">
+        <%= link_to post_path(post) do %>
+        <p class="caption mx-2 mt-5"><%= image_tag post.post_image, format: 'jpeg', size: '300x200' %></p>
+        <% end %>
+        <p class="caption"><%= post.shop_name %></p>
+        <p class="caption">     <!-- タグリスト -->
+         <% @post_cafe_tags.each do |tag| %>
+         <i class="fa-sharp fa-solid fa-tag"></i>
+         <%= link_to tag.name,search_tag_path(cafe_tag_id: tag.id) %>
+         <% end %>
+         </p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
