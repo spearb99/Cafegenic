@@ -30,6 +30,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @tag_list = @post.cafe_tags.pluck(:name)
     @post_cafe_tags = @post.cafe_tags
+    @post_comment = Comment.new
   end
 
   def edit

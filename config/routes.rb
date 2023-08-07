@@ -21,6 +21,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   patch "users/withdraw" => "users#withdraw"
 
   resources :posts do
+  resources :comments, only: [:create, :destroy]
     collection do
       get 'indexfav'
     end
