@@ -14,8 +14,12 @@ class User < ApplicationRecord
   # 一覧画面で使う
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followeds, source: :follower
-  
+  # いいね
   has_many :favorites, dependent: :destroy
+  
+  # コメント
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 
   validates :name,        presence: true

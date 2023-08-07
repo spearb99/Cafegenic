@@ -1,0 +1,16 @@
+<div class="d-inline-flex flex-column">
+  <% post.comments.each do |post_comment| %>
+    <div class="d-flex">
+    <div class="mb-3">
+        <%= image_tag post_comment.user.get_profile_image, size: '50x50' %><br>
+        <%= link_to post_comment.user.name, user_path(post_comment.user) %>
+      </div>
+      <div class="ml-3">
+        <%= post_comment.content %>
+        <% if post_comment.user == current_user %>
+        <%= link_to "Destroy" , post_comment_path(post, post_comment), class: "btn btn-sm btn-danger" ,method: :delete , remote:true, data: {"turbolinks" => false} %>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
