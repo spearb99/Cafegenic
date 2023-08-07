@@ -14,15 +14,29 @@
   <tr>
   <td>
    <!-- タグリスト -->
-      <% @post_cafe_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= tag.name %>
-      <% end %>
+    <% @post_cafe_tags.each do |tag| %>
+    <i class="fa-sharp fa-solid fa-tag"></i>
+    <%= tag.name %>
+    <% end %>
+  </td>
   </tr>
   <tr>
     <td id="favorite_buttons_<%= @post.id %>" >
     <%= render "public/favorites/favorite", post: @post %></td>
   </tr>
+
+  <tr>
+    <td>コメント件数:<span id="comment_count"><%= @post.comments.count %></span></td>
+
+    <div id="post-comments">
+     <%= render "public/comments/comment_show" , { post: @post , comment: @post_comment } %><br>
+    </div>
+    <div id="comment-form">
+     <%= render "public/comments/form" , { post: @post , comment: @post_comment } %><br>
+    </div>
+  </tr>
+
+
   <div id='map'>
   </div>
 <style>
