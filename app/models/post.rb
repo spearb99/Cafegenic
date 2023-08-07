@@ -1,10 +1,12 @@
 class Post < ApplicationRecord
    belongs_to :user
+   has_many :comments, dependent: :destroy
    has_many :favorites, dependent: :destroy
    has_many :post_users, through: :favorite, source: :user
    has_many :post_cafe_tags, dependent: :destroy
    has_many :cafe_tags, through: :post_cafe_tags, source: :cafe_tag
    has_one_attached :post_image
+
 
  def favorited_by?(user)
      favorites.exists?(user_id: user.id)
