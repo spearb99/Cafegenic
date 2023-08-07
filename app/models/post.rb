@@ -7,6 +7,12 @@ class Post < ApplicationRecord
    has_many :cafe_tags, through: :post_cafe_tags, source: :cafe_tag
    has_one_attached :post_image
 
+   validates :post_image, presence: true
+   validates :shop_name, presence: true
+   validates :cafe, presence: true
+   validates :address, presence: true
+   validates :text, presence: true
+
 
  def favorited_by?(user)
      favorites.exists?(user_id: user.id)
@@ -31,4 +37,13 @@ class Post < ApplicationRecord
     self.cafe_tags << cafe_tag
  end
  end
+
+  def self.search(search)
+    if search != ""
+      Post.joins(:cafe_tags).joins(:user).where('shop_name LIKE(?) OR address LIKE(?) OR cafe_tags.name LIKE(?) OR users.name LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%","%#{search}%")
+    else
+      Post.all
+    end
+  end
 end
+

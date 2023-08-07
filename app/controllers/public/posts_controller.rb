@@ -53,10 +53,17 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def search
+   @posts = Post.search(params[:keyword])
+  end
+
+  def indexsearch
+   @posts = Post.search(params[:keyword])
+  end
 
  private
 
   def post_params
-    params.require(:post).permit(:post_image, :text, :shop_name, :address, :longitude, :latitude, :cafe_tag_id)
+    params.require(:post).permit(:post_image, :text, :shop_name, :address, :longitude, :latitude, :cafe_tag)
   end
 end
