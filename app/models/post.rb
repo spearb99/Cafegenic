@@ -4,7 +4,7 @@ class Post < ApplicationRecord
    has_many :favorites, dependent: :destroy
    has_many :post_users, through: :favorite, source: :user
    has_many :post_cafe_tags, dependent: :destroy
-   has_many :cafe_tags, through: :post_cafe_tags, source: :cafe_tag
+   has_many :cafe_tags, through: :post_cafe_tags, source: :cafe_tag, dependent: :destroy
    has_one_attached :post_image
 
 

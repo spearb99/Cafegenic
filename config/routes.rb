@@ -29,7 +29,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     end
     resource :favorite, only: [:create, :destroy]
   end
-  resources :users, only: [:index, :show, :edit, :update] do
+  resources :users do
     member do
       get :follows, :followers
     end
