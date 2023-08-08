@@ -4,7 +4,7 @@ class Post < ApplicationRecord
    has_many :favorites, dependent: :destroy
    has_many :post_users, through: :favorite, source: :user
    has_many :post_cafe_tags, dependent: :destroy
-   has_many :cafe_tags, through: :post_cafe_tags, source: :cafe_tag
+   has_many :cafe_tags, through: :post_cafe_tags, source: :cafe_tag, dependent: :destroy
    has_one_attached :post_image
 
 
@@ -29,6 +29,13 @@ class Post < ApplicationRecord
     new_tags.each do |new_name|
     cafe_tag = CafeTag.find_or_create_by(name:new_name)
     self.cafe_tags << cafe_tag
+    end
  end
+ def self.search(search)
+    if search != ""
+      Post.joins(:cafe_tags).joins(:user).where('shop_name LIKE(?) OR address LIKE(?) OR cafe_tags.name LIKE(?) OR users.name LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%","%#{search}%")
+    else
+      Post.all
+    end
  end
 end
