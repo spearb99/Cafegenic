@@ -1,53 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4 class="my-5">マイページ</h4>
       <div class="d-flex align-items-center">
-      <table class="table table-borderless">
-
-        <tr>
-          <td><%= image_tag @user.get_profile_image, size: '100x100' %></td>
-        </tr>
-
-        <tr>
-          <td><%= @user.name %></td>
-        </tr>
-
-      <tr>Follows</tr>
-      <td>
-        <%= link_to follows_user_path(@user) do %>
-        <h6><%= @user.followers.count %></h6>
-        <% end %>
-      </td>
-      </tr>
-      <tr>Followers</tr>
-        <td>
-          <%= link_to followers_user_path(@user) do %>
+         My page
+         <div class="row">
+          <%= image_tag @user.get_profile_image, size: '200x200',class:"mt-3 rounded-circle" %>
+          <%= link_to "編集", edit_user_path(@user), class:"text-dark" %>
+         </div>
+         <div class="row">
+           <%= @user.name %>
+         </div>
+          <h6><%= @user.followers.count %></h6>
           <h6><%= @user.followeds.count %></h6>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-      <td>
-    <div class="mypage-follow-contents-<%= @user.id %>">
-      <%= render "public/relationships/relationship", user: @user %>
-    </div>
-      </td>
-        <tr>
-          <td><%= @user.introduction %></td>
-        </tr>
-
-        <tr>
-          <td><%= @user.email %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <%= link_to "編集する", edit_user_path(@user), class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
-          </td>
-        </tr>
-        </table>
+              <%= @user.introduction %>
+              <%= @user.email %>
         </div>
       </div>
     </div>

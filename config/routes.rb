@@ -19,7 +19,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   root to: "homes#top"
   get "users/about"=>"homes#about"
   patch "users/withdraw" => "users#withdraw"
-
+  get "users/unsubscribe" => "users#unsubscribe"
   resources :posts do
   resources :comments, only: [:create, :destroy]
     collection do
