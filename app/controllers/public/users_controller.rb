@@ -43,11 +43,6 @@ class Public::UsersController < ApplicationController
    @users = user.follower_users
   end
   
-  def guest_sign_in
-    user = User.guest
-    sign_in user
-    redirect_to post_path, notice: 'ゲストユーザーとしてログインしました。'
-  end
   
   def favorites
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)

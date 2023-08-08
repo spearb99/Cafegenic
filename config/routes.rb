@@ -24,6 +24,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   resources :comments, only: [:create, :destroy]
     collection do
       get 'indexfav'
+      get 'search'
+      get 'indexsearch'
     end
     resource :favorite, only: [:create, :destroy]
   end
