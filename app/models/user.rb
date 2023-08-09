@@ -57,6 +57,10 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.password_confirmation = user.password
       user.name = "ゲストユーザー"
+   end
   end
+  
+  def self.search(search)
+      User.where('users.name LIKE(?)' ,"%#{search}%")
   end
 end

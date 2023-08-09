@@ -1,97 +1,94 @@
- <table class="table table-borderless">
-  <tr>
-    <td><%= image_tag @post.post_image, size: "300x200" %></td>
-  </tr>
-  <tr>
-    <td><%= @post.shop_name %></td>
-  </tr>
-  <tr>
-    <td><%= @post.text %></td>
-  </tr>
-  <tr>
-    <td id="address"><%= @post.address %></td>
-  </tr>
-  <tr>
-  <td>
-   <!-- タグリスト -->
-    <% @post_cafe_tags.each do |tag| %>
-    <i class="fa-sharp fa-solid fa-tag"></i>
-    <%= tag.name %>
-    <% end %>
-  </td>
-  </tr>
-  <tr>
-    <td id="favorite_buttons_<%= @post.id %>" >
-    <%= render "public/favorites/favorite", post: @post %></td>
-  </tr>
-
-  <tr>
-    <td>コメント件数:<span id="comment_count"><%= @post.comments.count %></span></td>
-
-    <div id="post-comments">
-     <%= render "public/comments/comment_show" , { post: @post , comment: @post_comment } %><br>
+<div class="container">
+  <div class="row ml-5">
+   <div class="card mt-4 ml-3" , style="width: 60rem;">
+    <div class="card-header d-flex">
+      <%= image_tag @post.user.get_profile_image, size: '100x100',class:"mt-3 rounded-circle" %>
+     <h4 class="mt-5 ml-5"><%= @post.user.name %></h4>
     </div>
-    <div id="comment-form">
-     <%= render "public/comments/form" , { post: @post , comment: @post_comment } %><br>
-    </div>
-  </tr>
+     <%= link_to post_path(@post) do %>
+      <%= image_tag @post.post_image, size: '300x500', class:"card-img-top"; %>
+     <% end %>
+     <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <i class="fas fa-coffee mb-3"></i><span> <%= @post.shop_name %></span>
+           <div id="address"><i class="fas fa-map-pin mb-3"></i> <%= @post.address %></div>
+            <div class="row ml-1">
+             <% @post_cafe_tags.each do |tag| %>
+              <i class="fas fa-tag"></i> <%= tag.name %> ｜
+            <% end %>
+             <div id="favorite_buttons_<%= @post.id %>"><%= render "public/favorites/favorite", post: @post %></div>like |
+              <i class="fas fa-comment"></i> comment |
+             </div>
+             <div class="mb-3"><%= "#{time_ago_in_words(@post.created_at)} ago" %></div>
+             <div id='map'>
+ 　　　　　　　　　　 </div>
+　　　　　　 <style>
+              #map{
+              height: 400px;
+              }
+             </style>
 
+             <script>
+              /*
+              mapを関数の外で定義(codeAddressでも使うため)
+              geocoderを用意
+              */
 
-  <div id='map'>
-  </div>
-<style>
-#map{
-  height: 400px;
-}
-</style>
+             let map
+             let geocoder
 
-<script>
-/*
-mapを関数の外で定義(codeAddressでも使うため)
-geocoderを用意
-*/
+             function initMap(){
+             // geocoderを初期化
+             geocoder = new google.maps.Geocoder()
 
-let map
-let geocoder
+             map = new google.maps.Map(document.getElementById('map'), {
+             //center: {lat: <%= @post.latitude || 0 %>, lng: <%= @post.longitude || 0 %>},
+            zoom: 20
+             });
 
-function initMap(){
-  // geocoderを初期化
-  geocoder = new google.maps.Geocoder()
+            codeAddress();
+            }
 
-  map = new google.maps.Map(document.getElementById('map'), {
-  //center: {lat: <%= @post.latitude || 0 %>, lng: <%= @post.longitude || 0 %>},
-  zoom: 20
-  });
+            function codeAddress(){
+            // 入力を取得
+            let inputAddress = document.getElementById('address').textContent;
 
-  codeAddress();
-}
-
-function codeAddress(){
-  // 入力を取得
-  let inputAddress = document.getElementById('address').textContent;
-
-  // geocodingしたあとmapを移動
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
+            // geocodingしたあとmapを移動
+            geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+            if (status == 'OK') {
 　　　　　　　　　　　　// map.setCenterで地図が移動
-      map.setCenter(results[0].geometry.location);
+            map.setCenter(results[0].geometry.location);
 
-　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
-
-</tr>
-  <td>
-    <%= link_to "編集する", edit_post_path(@post), class:"btn", style: "background-color: #64CCC5; color: white; ml-3" %>
-  </td>
-  </tr>
-</table>
+　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+            var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+            });
+            } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+            }
+            });
+            }
+           </script>
+           <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+        </div>
+        <div class="col-6">
+          <p class="card-title">
+            <div class="border"><%= @post.text %></div>
+          <div id="post-comments">
+           <%= render "public/comments/comment_show" , { post: @post , comment: @post_comment } %>
+          </div>
+          <div id="comment-form">
+           <%= render "public/comments/form" , { post: @post , comment: @post_comment } %><br>
+          </div>
+        </div>
+        <div class="mx-auto">
+          <%= link_to "編集する", edit_post_path(@post), class:"btn btn btn-lg btn-info" %>
+        </div>
+      </div>
+     </div>
+   </div>
+  </div>
+ </div>
+</div>

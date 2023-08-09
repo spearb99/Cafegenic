@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_customer!,only:[:index,:show]
 
   def show
     @user = current_user
@@ -24,7 +25,11 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @user = User.all
+    if params[:keyword]
+     @users = User.search(params[:keyword])
+    else
+     @users = User.all 
+    end
   end
 
   def withdraw
@@ -45,7 +50,14 @@ class Public::UsersController < ApplicationController
    user = User.find(params[:id])
    @users = user.follower_users
   end
-
+  
+  def search
+    if params[:keyword]
+     @users = User.search(params[:keyword])
+    else
+     @users = User.all 
+    end
+  end
 
   def favorites
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
