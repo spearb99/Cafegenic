@@ -1,4 +1,21 @@
-<%= form_with(url: indexsearch_posts_path, local: true, method: :get, class: "search-form") do |form| %>
-  <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-  <%= form.submit "検索", class: "search-btn" %>
-<% end %>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">検索フォーム</h5>
+      <div class="form-body p-4">
+        <%= form_with(url: indexsearch_posts_path, local: true, method: :get, class: "search-form") do |form| %>
+            <h4>投稿検索（タグ検索）</h4>
+             <%= form.text_field :keyword, placeholder: "投稿検索", class: "search-input" %>
+             <%= form.submit "検索", class: "search-btn" %>
+             <% end %>
+          <hr>
+          <%= form_with(url: users_path, local: true, method: :get, class: "search-form") do |form| %>
+          <h4>ユーザー検索</h4>
+          
+           <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "search-input" %>
+           <%= form.submit "検索", class: "search-btn" %>
+           <% end %>
+      </div>
+    </div>
+  </div>
+</div>

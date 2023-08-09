@@ -1,41 +1,33 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h4 class="my-5">情報編集</h4>
-      <table class="table table-borderless">
-        <% if @user.email == 'guest@example.com'%>
-        <p>ゲストユーザーはユーザー情報の編集ができません。</p>
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <% if @user.email == 'guest@example.com'%>
+       <p>ゲストユーザーはユーザー情報の編集ができません。</p>
         <% else %>
         <%= form_with model: @user do |f| %>
-        <tr>
-          <td><%= f.label :image %></td>
-          <td><%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %></td>
-        </tr>
-        <tr>
-          <td>name</td>
-          <td><%= f.text_field :name %></td>
-        </tr>
-
-        <tr>
-          <td>自己紹介</td>
-          <td><%= f.text_field :introduction %></td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= f.text_field :email %></td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td><%= f.submit "変更", class:"btn", style: "background-color: #64CCC5; color: white;" %></td>
-          <td><%= link_to "退会する", users_withdraw_path, class:"btn btn-danger" %></td>
-        </tr>
+        <div class="form-body p-4">
+          <div class="row mb-3">
+            <h5 class="text-dark col-6">編集</h5>
+            <div class="col-6">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-primary"%>
+              <%= link_to "退会",  users_unsubscribe_path, class: "btn btn-outline-danger" %>
+            </div>
+            </div>
+          <hr>
+          <%= f.file_field :profile_image, accept: "image/*", class: "w-100" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+            </div>
+            <%= f.text_field :name, class:"form-control", placeholder:"name" %>
+          </div>
+          <%= f.text_field :email, class:"form-control", rows:"3", placeholder:"email" %>
+          <%= f.text_area :introduction, class: "form-control", placeholder:"自己紹介" %>
+          <hr>
+          <%= f.submit '編集', class:"btn btn-lg btn-block btn-info mt-4" %>
         <% end %>
         <% end %>
-      </table>
+      </div>
     </div>
   </div>
+</div>
 </div>

@@ -1,39 +1,25 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <table class="table table-borderless">
-        <h4 class="my-4">投稿編集</h4>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="row">
+      <h5 class="text-dark bg-light p-4 mb-0">編集</h5>
+       <%= link_to "削除", post_path(@post), method: :delete, class:"btn btn-outline-danger" %>
+       </div>
+      <div class="form-body p-4">
         <%= form_with model: @post do |f| %>
-
-        <tr>
-          <td>画像</td>
-          <td><%= f.file_field :post_image, accept: "image/*" %></td>
-        </tr>
-        
-        <tr>
-          <td>ショップ名</td>
-          <td><%= f.text_field :name, class: 'form-control'%></td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td><%= f.text_area :text, class: 'form-control' %></td>
-        </tr>
-        
-        <tr>
-          <td>住所</td>
-          <td><%= f.text_field :address, class: 'form-control' %></td>
-        </tr>
-      
-       <tr>
-         <td>タグ(,で区切ると複数タグ登録できます)</td>
-         <td><%= f.text_field :name,value: @tag_list, class: 'form-control' %></td>
-       </tr>
-       <td><%= f.submit '変更を保存', class: "btn", style: "background-color: #64CCC5; color: white; mx-3" %></td>
-      <td><%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-      <% end %>
-        </tr>
-      </table>
+          <%= f.file_field :post_image, accept: "image/*", class: "w-100" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+            </div>
+            <%= f.text_field :name, class:"form-control", placeholder:"ショップ名" %>
+          </div>
+          <%= f.text_field :address, class: "form-control", placeholder:"住所" %>
+          <%= f.text_area :text, class:"form-control", rows:"3", placeholder:"詳細" %>
+          <%= f.text_field :name,value: @tag_list, class: 'form-control', placeholder:"タグ(,で区切ると複数タグ登録できます)" %>
+          <hr>
+          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

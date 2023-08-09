@@ -1,26 +1,21 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col">
-    <h4 class="my-5">管理者ログイン</h2>
-    
-      <%= form_with model: @admin, url: admin_session_path do |f| %>
-        <table class="table table-borderless">
-          <tr>
-            <td><%= f.label :email, "メールアドレス" %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :password, "パスワード" %></td>
-            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><%= f.submit "ログイン", class:"btn", style: "background-color: #9AC5F4; color: white" %></td>
-          </tr>
-        </table>
-      <% end %>
-      
-      <%= render "admin/shared/links" %>
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="text-dark  p-4 mb-0">
+        <h4 class="d-flex justify-content-center">管理者ログイン</h4>
+        <div class="form-body p-4">
+         <hr>
+          <%= form_with model: @admin, url: admin_session_path do |f| %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+            </div>
+            　<%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email", class:"form-control w-100" %>
+          </div>
+           　<%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class:"form-control" %> 
+          <hr>
+          <%= f.submit 'ログイン', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+       </div>
       </div>
     </div>
   </div>
