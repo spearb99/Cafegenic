@@ -2,18 +2,31 @@
   <div class="row">
     <div class="col">
       <div class="d-flex align-items-center">
-         My page
-         <div class="row">
+         <h3>My page</h3>
+      </div>
+      <div class="row">
+       <div class="col-4 mb-5">
           <%= image_tag @user.get_profile_image, size: '200x200',class:"mt-3 rounded-circle" %>
+       </div>
+       <div class="col-8">
           <%= link_to "編集", edit_user_path(@user), class:"text-dark" %>
+       </div>
+         <div class="row ml-5">
+          <h3><%= @user.name %></h3>
+         <div class="ml-5">
+          <h5>
+            <%= @user.followers.count %>
+            <%= @user.followeds.count %>
+          </h5>
+         </div>
          </div>
          <div class="row">
-           <%= @user.name %>
+          <h4><%= @user.introduction %></h4>
          </div>
-          <h6><%= @user.followers.count %></h6>
-          <h6><%= @user.followeds.count %></h6>
-              <%= @user.introduction %>
-              <%= @user.email %>
+         <div class="row">
+         <hr>
+         </div>
+         </div>
         </div>
       </div>
     </div>
