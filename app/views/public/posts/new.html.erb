@@ -12,7 +12,7 @@
           </div>
           <%= f.text_field :address, class: "form-control", placeholder:"住所" %>
           <%= f.text_area :text, class:"form-control", rows:"3", placeholder:"詳細" %>
-      　　<%= f.text_field :name,value: @tag_list, class: 'form-control', placeholder:"タグ(,で区切ると複数タグ登録できます)" %>
+          <%= f.text_field :name,value: @tag_list, class: 'form-control', placeholder:"タグ(,で区切ると複数タグ登録できます)" %>
           <hr>
           <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
         <% end %>
