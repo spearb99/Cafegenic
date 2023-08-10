@@ -11,6 +11,11 @@ class Post < ApplicationRecord
  def favorited_by?(user)
      favorites.exists?(user_id: user.id)
  end
+ 
+ def get_post_image
+    (post_image.attached?) ? post_image : 'no_image.jpg'
+ end
+  
 
  def save_cafe_tags(tags)
   # タグが存在していれば、タグの名前を配列として全て取得

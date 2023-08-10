@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_customer!,only:[:index,:show]
+  before_action :authenticate_user!,only:[:index,:show]
 
   def show
     @user = current_user

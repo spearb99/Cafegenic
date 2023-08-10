@@ -14,7 +14,8 @@
             </div>
             </div>
           <hr>
-          <%= f.file_field :profile_image, accept: "image/*", class: "w-100" %>
+          <%= f.file_field :profile_image, accept: "image/*", class: "w-100", style: 'display:none;'  %>
+           <%= image_tag @user.get_profile_image, size: "200x200",onClick: "$('.img_field').click()", class: "img_prev mt-3 rounded-circle" %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
             </div>
