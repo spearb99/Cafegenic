@@ -1,12 +1,8 @@
-<footer >
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<% if user_signed_in? %>
+<nav class="navbar navbar-expand-lg navbar-dark", style="background-color:#563a3a;">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
       	  <li>
     		    <%= link_to posts_path,class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i>
@@ -32,20 +28,23 @@
              <i class="far fa-user-circle"></i>
             <% end %>
           </li>
-          <% else %>
-          <li>
-            <%= link_to root_path(current_user),class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to users_about_path,class: 'nav-link text-light' do %>
-            <i class="fas fa-link"></i>
-            <% end %>
-          </li>
-        <% end %>
+        </ul>
+      </div>
+    </div>
+</nav>
+<% elsif admin_signed_in? %>
+<% else %>
+ <nav class="navbar navbar-expand-lg navbar-dark", style="background-color:#563a3a;">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li>
+          <%= link_to posts_path,class: 'nav-link text-light' do %>
+        <i class="fas fa-home"></i>
+          <% end %>
+        </li>
         </ul>
       </div>
     </div>
   </nav>
-</footer>
+<% end %>
