@@ -1,15 +1,17 @@
 <% if user_signed_in? %>
-<% else %>
-<header>
-  <p>
-    <%= link_to "新規登録" , new_user_registration_path,class: 'nav-link text-dark' %>
-  </p>
-  <p>
-    <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-  </p>
-  <p>
-    <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
-  </p>
-</header>
-<% end %>
+ <% else %>
+  <nav class="nav-list navbar navbar-expand-lg navbar-dark">
+   <ul class="navbar-nav">
+    <li class="a nav-item mt-3 ml-3">
+     <%= link_to '新規登録', new_user_registration_path,class: 'nav-link text-dark' %>
+    </li>
+    <li class="b nav-item mt-3 ml-3">
+     <%= link_to 'ログイン', new_user_registration_path,class: 'nav-link text-dark' %>
+    </li>
+    <li class="c nav-item mt-3">
+     <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'nav-link text-dark' %>
+    </li>
+  </ul>
+ <% end %>
+</nav>
 新着投稿
