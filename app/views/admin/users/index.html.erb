@@ -14,13 +14,13 @@
           <% @users.each do |user| %>
             <tr>
               <td><%= user.id %></td>
-              <td><%= link_to user.name, admin_user_path(user), class: "link" %></td>
+              <td><%= link_to user.name, admin_user_path(user), class: "text-dark link" %></td>
               <td><%= user.email %></td>
               <td>
                 <% if user.is_deleted == true %>
                 <span style="color:darkgray;"><%= "退会" %></strong>
                 <% else %>
-                <strong style="color:orange;"><%= "有効" %></strong>
+                <strong style="color:darkgreen;"><%= "有効" %></strong>
                 <% end %>
               </td>
             </tr>
