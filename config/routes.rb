@@ -38,7 +38,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 end
 devise_scope :user do
   post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
-  get '/users/sign_out' => 'devise/sessions#destroy'
 end
   namespace :admin do
   get "/" => "homes#top"
