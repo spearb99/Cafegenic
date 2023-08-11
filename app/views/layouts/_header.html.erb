@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
-  <% if admin_signed_in? %>
+ <% if user_signed_in? %>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item text-center mt-2", style="padding-left: 600px;"><%= link_to 'Cafegenic', root_path, class:"text-dark" %></li>
+  </ul>
+  <% elsif admin_signed_in? %>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item text-center mt-2", style="padding-left: 600px;"><%= link_to 'Cafegenic', root_path, class:"text-dark" %></li>
     </ul>
@@ -14,5 +18,9 @@
         <%= link_to '管理者ログアウト', destroy_admin_session_path, method: :delete, class: "btn mx-3", style: "background-color: #563a3a; color: white;" %>
        </li>
      </ul>
+     <% else %>
+     <ul class="navbar-nav mr-auto">
+      <li class="nav-item text-center mt-2", style="padding-left: 600px;"><%= link_to 'Cafegenic', root_path, class:"text-dark" %></li>
+    </ul>
   <% end %>
 </nav>
