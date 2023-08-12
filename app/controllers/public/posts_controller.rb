@@ -41,7 +41,9 @@ class Public::PostsController < ApplicationController
 
   def update
      @post = Post.find(params[:id])
+     tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
+       @post.save_cafe_tags(tag_list)
         redirect_to post_path(@post)
     else
         redirect_to post_path(@post)
