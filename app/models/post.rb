@@ -11,11 +11,11 @@ class Post < ApplicationRecord
  def favorited_by?(user)
      favorites.exists?(user_id: user.id)
  end
- 
+
  def get_post_image
     (post_image.attached?) ? post_image : 'no_image.jpg'
  end
-  
+
 
  def save_cafe_tags(tags)
   # タグが存在していれば、タグの名前を配列として全て取得
@@ -38,7 +38,7 @@ class Post < ApplicationRecord
  end
  def self.search(search)
     if search != ""
-      Post.joins(:cafe_tags).joins(:user).where('shop_name LIKE(?) OR address LIKE(?) OR cafe_tags.name LIKE(?) OR users.name LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%","%#{search}%")
+      Post.joins(:cafe_tags).joins(:user).where('shop_name LIKE(?) OR address LIKE(?) OR cafe_tags.name LIKE(?) OR users.name LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%","%#{search}%").distinct
     else
       Post.all
     end
