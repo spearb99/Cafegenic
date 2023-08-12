@@ -1,9 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="d-flex align-items-center">
-         <h3 style="color:#795a5a;">My page</h3>
-      </div>
       <div class="row">
        <div class="col-4 mb-5">
           <%= image_tag @user.get_profile_image, size: '200x200',class:"mt-3 rounded-circle" %>
@@ -14,14 +11,14 @@
        </div>
        <% else %>
        <div class="mt-5 mb-5">
-         <%= render "public/relationships/relationship", user: @user %>
+         <div id="follow_buttons_<%= @user.id %>"><%= render "public/relationships/relationship", user: @user %></div>
        </div>
        <% end %>
          <div class="row ml-5">
           <h3><%= @user.name %></h3>
           <h5 class="ml-5">
-            <%= @user.followers.count %>フォロー
-            <%= @user.followeds.count %>フォロワー
+            <div id="followers_counts"><%= render "public/relationships/follower", user: @user %>フォロー</div>
+            <div id="followeds_counts"><%= render "public/relationships/followed", user: @user %>フォロワー</div>
           </h5>
           <div class="row border">
           <h4 classs="mr-auto mt-5"><%= @user.introduction %></h4>
