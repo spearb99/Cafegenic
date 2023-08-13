@@ -1,5 +1,5 @@
 <% posts.each do |post| %>
-  <div class="card mt-4 ml-3" , style="width: 21rem;">
+  <div class="card mt-4 ml-3 mb-4" , style="width: 21rem;">
     <%= link_to post_path(post) do %>
       <%= image_tag post.post_image, size: '300x200', class:"card-img-top"; %>
     <% end %>
