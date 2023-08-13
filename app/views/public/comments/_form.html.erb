@@ -1,6 +1,6 @@
 <%= form_with model: [ post,comment ], local: false do |f| %>
  <div class="row mt-3">
     <%= f.text_area :content, placeholder: "コメント", class: "form-control w-50" %>
-    <%= f.submit '送信', class:"btn btn-info" %>
+    <%= f.submit '送信', class:"btn ml-2", style: "background-color: #698966; color: white;" %>
   </div>
   <% end %>
