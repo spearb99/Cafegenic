@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @following_users = @user.following_users
     @follower_users = @user.follower_users
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(3)
   end
 
   def edit
@@ -46,7 +46,6 @@ class Public::UsersController < ApplicationController
     @users = user.following_users
   end
 
-# フォロワー一覧
   def followers
    user = User.find(params[:id])
    @users = user.follower_users
@@ -56,7 +55,7 @@ class Public::UsersController < ApplicationController
     if params[:keyword]
      @users = User.search(params[:keyword])
     else
-     @users = User.all 
+     @users = User.page(params[:page]) 
     end
   end
 
