@@ -1,29 +1,25 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>ログイン</h2>
-      <h4>会員の方はこちらからログイン</h4>
-      
-      <%= form_with model: @user, url: session_path(resource_name) do |f| %>
-        <table class="table table-borderless">
-          <tr>
-            <td><%= f.label :email, "メールアドレス" %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :password, "パスワード" %></td>
-            <td><%= f.password_field :password, autocomplete: "current-password", class:"form-control" %></td>            
-          </tr>
-          <tr>
-            <td></td>
-            <td><%= f.submit "ログイン", class:"btn", style: "background-color: #9AC5F4; color: white" %></td>
-          </tr>
-        </table>
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="text-dark  p-4 mb-0">
+        <h4 class="d-flex justify-content-center">ログイン</h4>
+        <h6 class="d-flex justify-content-center">
+          <%= link_to "新規登録", new_user_registration_path %>
+        </h6>
+        <div class="form-body p-4">
+         <hr>
+         <%= form_with model: @user, url: session_path(resource_name) do |f| %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+            </div>
+            　<%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email", class:"form-control w-100" %>
+          </div>
+           　<%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class:"form-control" %> 
+          <hr>
+          <%= f.submit 'ログイン', class:"btn btn-lg btn-block mt-4", style: "background-color: #9F6767; color: white;" %>
         <% end %>
-      
-      <h4>会員登録がお済みでない方</h4>
-      <%= render "public/shared/links" %>から新規登録を行ってください。
-    
+       </div>
+      </div>
     </div>
   </div>
 </div>

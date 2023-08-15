@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark p-4 mb-0">検索フォーム</h5>
+      <hr>
+      <div class="form-body p-4 ml-5 ">
+        <%= form_with(url: indexsearch_posts_path, local: true, method: :get, class: "search-form") do |form| %>
+            <h5 class="ml-4">投稿検索（タグ検索）</h5>
+             <%= form.text_field :keyword, placeholder: "投稿検索またはタグ検索", class: "search-input" %>
+             <%= form.submit "検索", class: "search-btn",style: "background-color: #795a5a; color: white;" %>
+             <% end %>
+        </div>
+        <hr>
+        <div class="form-body p-4 ml-5 ">
+          <%= form_with(url: users_path, local: true, method: :get, class: "search-form") do |form| %>
+          <h5 class="ml-5">ユーザー検索</h5>
+           <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "search-input" %>
+           <%= form.submit "検索", class: "search-btn",style: "background-color: #795a5a; color: white;" %>
+           <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

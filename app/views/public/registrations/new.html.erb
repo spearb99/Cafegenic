@@ -1,43 +1,27 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h2 class="my-4">新規会員登録</h2>
-
-      <%= form_with model: @user, url: user_registration_path do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
-        <table class="table table-borderless">
-          <tr>
-            <td>名前</td>
-            <td><%= f.text_field :name, autofocus: true, placeholder: "メメ" %></td>
-          </tr>
- 
-          <tr>
-            <td>メールアドレス</td>
-            <td><%= f.text_field :email, placeholder: "sample@example.com" %></td>
-          </tr>
-          <tr>
-            <td>パスワード
-                  <% if @minimum_password_length %>
-                    <em>(<%= @minimum_password_length %> 文字以上)</em>
-                  <% end %>
-            </td>
-            <td><%= f.text_field :password, autocomplete: "new-password" %></td>
-          </tr>
-
-          <tr>
-            <td>パスワード(確認用)</td>
-            <td><%= f.text_field :password_confirmation, autocomplete: "new-password" %></td>
-          </tr>
-  
-          <tr>
-            <td></td>
-            <td><%= f.submit "新規登録", class:"btn", style: "background-color: #9AC5F4; color: white;" %></td>
-          </t>  
-        </table>
-        
-        <h4>既に登録済みの方</h4>
-        <%= render "public/shared/links" %>からログインしてください。
-      <% end %>
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="text-dark  p-4 mb-0">
+        <h4 class="d-flex justify-content-center">新規登録</h4>
+        <h6 class="d-flex justify-content-center">
+          <%= link_to "ログイン", new_user_session_path %>
+        </h6>
+        <div class="form-body p-4">
+         <hr>
+         <%= form_with model: @user, url: user_registration_path do |f| %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+            </div>
+              <%= f.text_field :name, autofocus: true, placeholder: "name" ,class:"form-control w-100"%>
+          </div>
+             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class:"form-control w-100" %>
+           　<%= f.password_field :password, autocomplete: "current-password",  placeholder: "password6文字以上", class:"form-control" %> 
+             <%= f.password_field :password_confirmation, autocomplete: "new-password",  placeholder: "確認用", class:"form-control"%>
+          <hr>
+          <%= f.submit '新規登録', class:"btn btn-lg btn-block mt-4", style: "background-color: #9F6767; color: white;"%>
+        <% end %>
+       </div>
+      </div>
     </div>
   </div>
 </div>

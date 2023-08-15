@@ -8,9 +8,8 @@
           退会する場合は、「退会する」をクリックしてください。
         </p>
 
-          <%= link_to "退会しない", users_mypage_path(current_user), class: "btn", style: "background-color: #9AC5F4; color: white;" %>
-          <%= link_to "退会する", users_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？"}, class: "btn btn-danger" %>
-
+          <%= link_to "退会しない", user_path(current_user), class: "btn btn-outline-primary mr-3 mb-3" %>
+          <%= link_to "退会する", users_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？"}, class: "btn btn-outline-danger mb-3" %>
     </div>
   </div>
 </div>

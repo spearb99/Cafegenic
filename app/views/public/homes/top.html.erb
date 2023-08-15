@@ -1,1 +1,53 @@
-新着投稿
+<% if user_signed_in? %>
+ <% else %>
+  <nav class="nav-list navbar navbar-expand-lg navbar-dark">
+   <ul class="navbar-nav">
+    <li class="a nav-item mt-3 ml-3">
+     <%= link_to '新規登録', new_user_registration_path,class: 'nav-link text-dark' %>
+    </li>
+    <li class="b nav-item mt-3 ml-3">
+     <%= link_to 'ログイン', new_user_session_path,class: 'nav-link text-dark' %>
+    </li>
+    <li class="c nav-item mt-3">
+     <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'nav-link text-dark' %>
+    </li>
+  </ul>
+ </nav>
+<% end %>
+<div class="slideshow-container">
+  <div class="slide fade">
+    <%= image_tag asset_path("top1.jpg") %>
+  </div>
+  <div class="slide fade">
+    <%= image_tag aseet_path("top2.jpg") %>
+  </div>
+  <div class="slide fade">
+    <%= image_tag asset_path("top3.jpg") %>
+  </div>
+  <div class="slide fade">
+    <%= image_tag asset_path("top4.jpg") %>
+  </div>
+</div>
+<div class="container mt-5" id="container">
+  <div class="row">
+    <div class="col">
+      <div class="mt-5">
+        <h4 style="color:#563a3a;">新着投稿</h4>
+        <div class="row mt-4">
+          <ul class="slider">
+            <% @new_posts.each do |post| %>
+            <li>
+              <%= link_to post_path(post) do %>
+              <p class="caption mx-2"><%= image_tag post.post_image, format: 'jpeg', size: '300x200' %></p>
+            <% end %>
+              <p class="caption"><i class="fas fa-coffee"></i><%= post.shop_name %></p>
+            </li>
+        <% end %>
+          </ul>
+        </div>
+        <p class="text-center mt-5">
+          <%= link_to 'すべての投稿を見る', posts_path, class: "link", style: "color:#563a3a;" %>
+        </p>
+      </div>
+    </div>
+  </div>

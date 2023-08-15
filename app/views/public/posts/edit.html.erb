@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="form-body p-4">
+      <div class="row mb-3">
+       <h5 class="text-dark col-6">編集</h5>
+       <div class="col-6 d-flex justify-content-end">
+        <%= link_to "削除", post_path(@post), method: :delete, class:"btn btn-outline-danger" %>
+       </div>
+       </div>
+       <hr>
+        <%= form_with model: @post do |f| %>
+          <%= f.file_field :post_image, accept: "image/*", class: "w-100", style: 'display:none;' %>
+          <%= image_tag @post.post_image, size: "200x200",onClick: "$('.img_field').click()", class: "img_prev" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+            </div>
+            <%= f.text_field :name, class:"form-control", placeholder:"ショップ名" %>
+          </div>
+          <%= f.text_field :address, class: "form-control", placeholder:"住所" %>
+          <%= f.text_area :text, class:"form-control", rows:"3", placeholder:"詳細" %>
+          <%= f.text_field :name,value: @tag_list, class: 'form-control', placeholder:"タグ(,で区切ると複数タグ登録できます)" %>
+          <hr>
+          <%= f.submit '投稿', class:"btn btn-lg btn-block mt-4", style: "background-color: #9F6767; color: white;" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
