@@ -24,7 +24,7 @@ class Public::PostsController < ApplicationController
 
   def indexfav
      favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
-     @posts = Post.where(id: favorites)
+     @posts = Post.where(id: favorites).page(params[:page])
   end
 
   def show
@@ -61,7 +61,7 @@ class Public::PostsController < ApplicationController
   end
 
   def indexsearch
-    @posts = Post.search(params[:keyword])
+    @posts = Post.search(params[:keyword]).page(params[:page])
   end
 
  private
