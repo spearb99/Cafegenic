@@ -1,3 +1,4 @@
+<%= flash[:notice] %>
 <div class="container">
   <div class="row ml-5">
    <div class="card mt-4 ml-3" , style="width: 60rem;">
@@ -22,8 +23,8 @@
           <div>
            <h3 class="mt-5"><%= @user.name %></h3>
            <div class="d-flex">
-            <h5 id="followers_counts"><%= render "public/relationships/follower", user: @user %>フォロー</h5>
-            <h5 class="ml-3" id="followeds_counts"><%= render "public/relationships/followed", user: @user %>フォロワー</h5>
+            <h5 id="followers_counts"><%= render "public/relationships/follower", user: @user %></h5>
+            <h5 class="ml-3" id="followeds_counts"><%= render "public/relationships/followed", user: @user %></h5>
            </div>
           </div>
         </div>

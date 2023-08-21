@@ -1,3 +1,4 @@
+<%= flash[:notice] %>
 <div class="container">
   <div class="row ml-5">
    <div class="card mt-4 ml-3 mb-5" , style="width: 60rem;">
@@ -22,8 +23,9 @@
              </div>
              <div class="mb-3"><%= "#{time_ago_in_words(@post.created_at)} ago" %></div>
              <div id='map'>
- 　　　　　　　　　　 </div>
-　　　　　　 <style>
+             </div>
+             
+             <style>
               #map{
               height: 400px;
               }
@@ -57,10 +59,10 @@
             // geocodingしたあとmapを移動
             geocoder.geocode( { 'address': inputAddress}, function(results, status) {
             if (status == 'OK') {
-　　　　　　　　　　　　// map.setCenterで地図が移動
+            // map.setCenterで地図が移動
             map.setCenter(results[0].geometry.location);
 
-　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+            // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
             var marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
@@ -84,7 +86,7 @@
           </div>
         </div>
         <% if @post.user == current_user %>
-        <div class="mx-auto">
+        <div class="mx-auto mt-3">
           <%= link_to "編集する", edit_post_path(@post), class:"btn btn btn-lg", style: "background-color: #795a5a; color: white;" %>
         </div>
         <% end %>

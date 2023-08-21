@@ -45,6 +45,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
        @post.save_cafe_tags(tag_list)
         redirect_to post_path(@post)
+        flash[:notice] = "編集に成功しました。"
     else
         redirect_to post_path(@post)
     end

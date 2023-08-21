@@ -2,7 +2,6 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!,only:[:index,:show]
 
   def show
-    #@user = current_user
     @user = User.find(params[:id])
     @following_users = @user.following_users
     @follower_users = @user.follower_users
@@ -17,6 +16,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
       if @user.update(user_params)
         redirect_to user_path(@user)
+        flash[:notice] = "編集に成功しました。"
       else
         render :edit
       end
