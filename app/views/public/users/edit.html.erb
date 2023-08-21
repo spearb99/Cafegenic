@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+     
       <% if @user.email == 'guest@example.com'%>
-       <p>ゲストユーザーはユーザー情報の編集ができません。</p>
+       <div class="ml-5">ゲストユーザーはユーザー情報の編集ができません。</div>
+       <div class="text-center"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-primary"%></div>
         <% else %>
         <%= form_with model: @user do |f| %>
         <div class="form-body p-4">
