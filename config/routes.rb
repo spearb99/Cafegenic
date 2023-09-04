@@ -26,6 +26,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       get 'indexfav'
       get 'search'
       get 'indexsearch'
+      get 'indextag'
     end
     resource :favorite, only: [:create, :destroy]
   end

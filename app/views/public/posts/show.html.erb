@@ -16,8 +16,10 @@
            <div id="address"><i class="fas fa-map-pin mb-3"></i> <%= @post.address %></div>
             <div class="row ml-1">
              <% @post_cafe_tags.each do |tag| %>
+              <%= link_to indextag_posts_path(cafe_tag_id: tag.id), class:"text-dark" do %>
               <i class="fas fa-tag"></i> <%= tag.name %> ｜
-            <% end %>
+              <% end %>
+             <% end %>
              <div id="favorite_buttons_<%= @post.id %>"><%= render "public/favorites/favorite", post: @post %></div>like |
               <i class="fas fa-comment"></i> comment |
              </div>

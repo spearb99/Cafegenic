@@ -64,6 +64,11 @@ class Public::PostsController < ApplicationController
   def indexsearch
     @posts = Post.search(params[:keyword]).page(params[:page])
   end
+  
+  def indextag
+    @tag = CafeTag.find(params[:cafe_tag_id])
+    @posts = @tag.posts.page(params[:page])
+  end
 
  private
 
