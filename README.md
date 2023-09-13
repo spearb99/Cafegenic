@@ -20,9 +20,9 @@
 - 自分が行ったカフェを投稿する時
 
 ## 設計書
-ER図
+### ER図
 https://drive.google.com/file/d/1q4nSOfsLCwfRk3O_BrTKLkgEQKzjeRSr/view?usp=sharing
-AWS構成図
+### AWS構成図
 https://app.diagrams.net/#G1Fz6jn-OCbbRvsmhLNt8JWZxhnk1BEKdZ
 
 ## 開発環境
