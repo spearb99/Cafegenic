@@ -1,4 +1,4 @@
-# cafegenic
+# Cafegenic
 
 ## サイト概要
 
