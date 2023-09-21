@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!,except:[:index]
-  
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def new
     @post = Post.new
   end
@@ -56,7 +57,7 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
-  
+
   def search
     @posts = Post.search(params[:keyword])
   end
@@ -64,7 +65,7 @@ class Public::PostsController < ApplicationController
   def indexsearch
     @posts = Post.search(params[:keyword]).page(params[:page])
   end
-  
+
   def indextag
     @tag = CafeTag.find(params[:cafe_tag_id])
     @posts = @tag.posts.page(params[:page])
@@ -74,5 +75,12 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:post_image, :text, :shop_name, :address, :longitude, :latitude, :cafe_tag_id)
+  end
+
+  def is_matching_login_user
+    post = Post.find(params[:id])
+   unless post.user.id == current_user.id
+      redirect_to posts_path
+   end
   end
 end
