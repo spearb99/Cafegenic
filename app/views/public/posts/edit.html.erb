@@ -10,7 +10,7 @@
        </div>
        <hr>
         <%= form_with model: @post do |f| %>
-          <%= f.file_field :post_image, accept: "image/*", class: "w-100", style: 'display:none;' %>
+          <%= f.file_field :post_image, accept: "image/*", class: "w-100 img_field", style: 'display:none;' %>
           <%= image_tag @post.post_image, size: "200x200",onClick: "$('.img_field').click()", class: "img_prev" %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">

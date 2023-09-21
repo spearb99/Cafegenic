@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!,only:[:index,:show]
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -29,7 +30,7 @@ class Public::UsersController < ApplicationController
     if params[:keyword]
      @users = User.search(params[:keyword])
     else
-     @users = User.all 
+     @users = User.all
     end
   end
 
@@ -50,12 +51,12 @@ class Public::UsersController < ApplicationController
    user = User.find(params[:id])
    @users = user.follower_users
   end
-  
+
   def search
     if params[:keyword]
      @users = User.search(params[:keyword])
     else
-     @users = User.page(params[:page]) 
+     @users = User.page(params[:page])
     end
   end
 
@@ -69,6 +70,14 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name,:email,:introduction,:profile_image )
   end
+
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to post_path
+    end
+  end
 end
+
 
 
