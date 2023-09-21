@@ -7,7 +7,6 @@ class Post < ApplicationRecord
    has_many :cafe_tags, through: :post_cafe_tags, dependent: :destroy
    has_one_attached :post_image
   
-   validates :comments,        presence: true
 
  def favorited_by?(user)
      favorites.exists?(user_id: user.id)
